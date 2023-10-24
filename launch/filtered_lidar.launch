@@ -1,0 +1,11 @@
+<launch>
+
+    <!-- NOTE: This will need to be enabled if you do not have a robot description file! -->
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 0 0 0 1 laser base_link" /> -->
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain"
+      name="laser_filter">
+    <rosparam command="load" file="$(find example_laser_filters)/config/lidar.yaml" />
+    <remap from="scan" to="/lidar2d/scan" />
+  </node>
+</launch>
